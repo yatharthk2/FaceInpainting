@@ -17,11 +17,14 @@ class Places2(torch.utils.data.Dataset):
                               recursive=True)
         else:
             #self.paths = glob('C:/Users/yatha/OneDrive/Desktop/Github_clones/pytorch-inpainting-with-partial-conv/data/data_large/*.jpg')
-           
+            #self.path=gt_image
             self.paths = glob('{:s}/{:s}_large/*'.format(img_root, split))
+            
        
-        #self.mask_paths = glob('C:/Users/yatha/OneDrive/Desktop/Github_clones/pytorch-inpainting-with-partial-conv/data/mask_root/*.jpg')
-        self.mask_paths = glob('{:s}/*.jpg'.format(mask_root))
+        
+        self.mask_paths = glob('{:s}/mask_root/*.jpg'.format(mask_root))
+        
+        
         self.N_mask = len(self.mask_paths)
 
     def __getitem__(self, index):

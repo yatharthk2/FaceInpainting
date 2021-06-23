@@ -24,7 +24,7 @@ img_transform = transforms.Compose(
 mask_transform = transforms.Compose(
     [transforms.Resize(size=size), transforms.ToTensor()])
 
-dataset_val = Places2(args.root,"../masks/", img_transform, mask_transform, 'val')
+dataset_val = Places2(args.root,"../data/", img_transform, mask_transform, 'val')
 
 model = PConvUNet().to(device)
 load_ckpt(args.snapshot, [('model', model)])

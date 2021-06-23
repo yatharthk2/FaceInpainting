@@ -3,7 +3,7 @@ import cv2 as cv
 import sys
 #import os
 #from PIL import Image
-#python manual-mask.py D:\trash\3.jpg
+#python manual-mask.py D:\trash\mountain.jpg
 
 # OpenCV Utility Class for Mouse Handling
 class Sketcher:
@@ -87,9 +87,11 @@ def main():
             #img_mask = str(img_mask)
             #img = cv.imread(img_mask)
             filename1 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/val_large/Mask_Image.jpg'
-            filename2 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inpaint_Image.jpg'
-            cv.imwrite(filename1, img_mask)
-            cv.imwrite(filename2, inpaintMask)
+            #filename2 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inpaint_Image.jpg'
+            filename3 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inverted_Inpaint_Image.jpg'
+            cv.imwrite(filename1, img)
+            #cv.imwrite(filename2, inpaintMask)
+            cv.imwrite(filename3, (cv.bitwise_not(inpaintMask)))
 
         
     print('Completed')
