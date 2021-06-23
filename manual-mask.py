@@ -1,6 +1,9 @@
 import numpy as np
 import cv2 as cv
 import sys
+#import os
+#from PIL import Image
+#python manual-mask.py D:\trash\3.jpg
 
 # OpenCV Utility Class for Mouse Handling
 class Sketcher:
@@ -35,7 +38,7 @@ class Sketcher:
 
 def main():
 
-    print("Usage: python inpaint <image_path>")
+    print("Usage: python manual-mask <image_path>")
     print("Keys: ")
     print("t - inpaint using FMM")
     print("n - inpaint using NS technique")
@@ -57,6 +60,10 @@ def main():
     inpaintMask = np.zeros(img.shape[:2], np.uint8)
     # Create sketch using OpenCV Utility Class: Sketcher
     sketch = Sketcher('image', [img_mask, inpaintMask], lambda : ((255, 255, 255), 255))
+    
+
+    #img = sketch
+    #img = img.save("sketch.jpeg")
 
     while True:
         ch = cv.waitKey()
@@ -76,6 +83,15 @@ def main():
             inpaintMask[:] = 0
             sketch.show()
 
+        if ch == ord('s'):
+            #img_mask = str(img_mask)
+            #img = cv.imread(img_mask)
+            filename1 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/val_large/Mask_Image.jpg'
+            filename2 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inpaint_Image.jpg'
+            cv.imwrite(filename1, img_mask)
+            cv.imwrite(filename2, inpaintMask)
+
+        
     print('Completed')
 
 
