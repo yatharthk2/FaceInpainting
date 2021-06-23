@@ -16,8 +16,6 @@ class Places2(torch.utils.data.Dataset):
             self.paths = glob('{:s}/data_large/**/*.jpg'.format(img_root),
                               recursive=True)
         else:
-            #self.paths = glob('C:/Users/yatha/OneDrive/Desktop/Github_clones/pytorch-inpainting-with-partial-conv/data/data_large/*.jpg')
-            #self.path=gt_image
             self.paths = glob('{:s}/{:s}_large/*'.format(img_root, split))
             
        

@@ -1,8 +1,6 @@
 import numpy as np
 import cv2 as cv
 import sys
-#import os
-#from PIL import Image
 #python manual-mask.py D:\trash\mountain.jpg
 
 # OpenCV Utility Class for Mouse Handling
@@ -66,32 +64,13 @@ def main():
     #img = img.save("sketch.jpeg")
 
     while True:
-        ch = cv.waitKey()
-        if ch == 27:
-            break
-        if ch == ord('t'):
-            # Use Algorithm proposed by Alexendra Telea: Fast Marching Method (2004)
-            # Reference: https://pdfs.semanticscholar.org/622d/5f432e515da69f8f220fb92b17c8426d0427.pdf
-            res = cv.inpaint(src=img_mask, inpaintMask=inpaintMask, inpaintRadius=3, flags=cv.INPAINT_TELEA)
-            cv.imshow('Inpaint Output using FMM', res)
-        if ch == ord('n'):
-            # Use Algorithm proposed by Bertalmio, Marcelo, Andrea L. Bertozzi, and Guillermo Sapiro: Navier-Stokes, Fluid Dynamics, and Image and Video Inpainting (2001)
-            res = cv.inpaint(src=img_mask, inpaintMask=inpaintMask, inpaintRadius=3, flags=cv.INPAINT_NS)
-            cv.imshow('Inpaint Output using NS Technique', res)
-        if ch == ord('r'):
-            img_mask[:] = img
-            inpaintMask[:] = 0
-            sketch.show()
-
+        ch = cv.waitKey() 
         if ch == ord('s'):
-            #img_mask = str(img_mask)
-            #img = cv.imread(img_mask)
+            
             filename1 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/val_large/Mask_Image.jpg'
-            #filename2 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inpaint_Image.jpg'
-            filename3 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inverted_Inpaint_Image.jpg'
+            filename2 = 'C:/Users/yatha/OneDrive/Desktop/projects/Inpainting_project/data/mask_root/Inverted_Inpaint_Image.jpg'
             cv.imwrite(filename1, img)
-            #cv.imwrite(filename2, inpaintMask)
-            cv.imwrite(filename3, (cv.bitwise_not(inpaintMask)))
+            cv.imwrite(filename2, (cv.bitwise_not(inpaintMask)))
 
         
     print('Completed')
