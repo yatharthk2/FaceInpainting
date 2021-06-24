@@ -117,6 +117,29 @@ def main():
             cv.imwrite(filename1, img)
             cv.imwrite(filename2, (cv.bitwise_not(inpaintMask)))
             print('Masked image saved in data')
+            device = torch.device('cuda')
+
+            size = (args.image_size, args.image_size)
+            img_transform = transforms.Compose(
+                [transforms.Resize(size=size), transforms.ToTensor(),
+                transforms.Normalize(mean=opt.MEAN, std=opt.STD)])
+            mask_transform = transforms.Compose(
+                [transforms.Resize(size=size), transforms.ToTensor()])
+
+            dataset_val = Places2(args.root,"./data/mask_root/", img_transform, mask_transform, 'val')
+
+            model = PConvUNet().to(device)
+            load_ckpt(args.snapshot, [('model', model)])
+            print('output is saved in result.jpg')
+
+            model.eval()
+            evaluate(model, dataset_val, device, 'result.jpg')
+
+
+
+if __name__ == '__main__':
+    main()
+    cv.destroyAllWindows()
 
 
 
@@ -124,6 +147,3 @@ def main():
 
 
 
-if __name__ == '__main__':
-    main()
-    cv.destroyAllWindows()
