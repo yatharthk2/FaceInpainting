@@ -55,6 +55,12 @@ def main():
 
     # Read image in color mode
     #img = cv.imread(sys.argv[1], cv.IMREAD_COLOR)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--img', type=str, default='./img')
+    parser.add_argument('--root', type=str, default='./data')
+    parser.add_argument('--snapshot', type=str, default=r'../model/1000000.pth')
+    parser.add_argument('--image_size', type=int, default=256)
+    args = parser.parse_args()
     
 
     # If image is not read properly, return error
@@ -70,10 +76,6 @@ def main():
     # Create sketch using OpenCV Utility Class: Sketcher
     sketch = Sketcher('image', [img_mask, inpaintMask], lambda : ((255, 255, 255), 255))
     
-
-    #img = sketch
-    #img = img.save("sketch.jpeg")
-
     while True:
         ch = cv.waitKey() 
         if ch == ord('s'):
@@ -84,12 +86,9 @@ def main():
             cv.imwrite(filename2, (cv.bitwise_not(inpaintMask)))
             break
 
-    parser = argparse.ArgumentParser()
+    
     # training options
-    parser.add_argument('--root', type=str, default='./data')
-    parser.add_argument('--snapshot', type=str, default=r'../model/1000000.pth')
-    parser.add_argument('--image_size', type=int, default=256)
-    args = parser.parse_args()
+    
 
     device = torch.device('cuda')
 
