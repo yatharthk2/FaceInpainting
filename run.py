@@ -22,32 +22,6 @@ parser.add_argument('--photo', type=str, default='./xyz')
 
 args = parser.parse_args()
 
-'''device = torch.device('cuda')
-
-size = (args.image_size, args.image_size)
-img_transform = transforms.Compose(
-    [transforms.Resize(size=size), transforms.ToTensor(),
-     transforms.Normalize(mean=opt.MEAN, std=opt.STD)])
-mask_transform = transforms.Compose(
-    [transforms.Resize(size=size), transforms.ToTensor()])
-
-dataset_val = Places2(args.root,"./data/mask_root/", img_transform, mask_transform, 'val')
-
-model = PConvUNet().to(device)
-load_ckpt(args.snapshot, [('model', model)])
-
-model.eval()
-evaluate(model, dataset_val, device, 'result.jpg')'''
-
-
-
-
-
-
-
-
-
-
 # OpenCV Utility Class for Mouse Handling
 class Sketcher:
     def __init__(self, windowname, dests, colors_func):
@@ -109,7 +83,9 @@ def main():
     #img = img.save("sketch.jpeg")
 
     while True:
-        ch = cv.waitKey() 
+        ch = cv.waitKey()
+        if ch == 27:
+            break
         if ch == ord('s'):
             
             filename1 = './data/val_large/Mask_Image.jpg'
