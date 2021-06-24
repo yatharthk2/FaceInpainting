@@ -1,6 +1,11 @@
 import argparse
 import torch
 from torchvision import transforms
+import numpy as np
+import cv2 as cv
+import sys
+#python run.py --photo D:\trash\mountain.jpg
+
 
 import opt
 from places2 import Places2
@@ -8,10 +13,40 @@ from evaluation import evaluate
 from net import PConvUNet
 from util.io import load_ckpt
 
-import numpy as np
-import cv2 as cv
-import sys
-#python manual-mask.py D:\trash\mountain.jpg
+parser = argparse.ArgumentParser()
+# training options
+parser.add_argument('--root', type=str, default='./data')
+parser.add_argument('--snapshot', type=str, default=r'../model/1000000.pth')
+parser.add_argument('--image_size', type=int, default=256)
+parser.add_argument('--photo', type=str, default='./xyz')
+
+args = parser.parse_args()
+
+'''device = torch.device('cuda')
+
+size = (args.image_size, args.image_size)
+img_transform = transforms.Compose(
+    [transforms.Resize(size=size), transforms.ToTensor(),
+     transforms.Normalize(mean=opt.MEAN, std=opt.STD)])
+mask_transform = transforms.Compose(
+    [transforms.Resize(size=size), transforms.ToTensor()])
+
+dataset_val = Places2(args.root,"./data/mask_root/", img_transform, mask_transform, 'val')
+
+model = PConvUNet().to(device)
+load_ckpt(args.snapshot, [('model', model)])
+
+model.eval()
+evaluate(model, dataset_val, device, 'result.jpg')'''
+
+
+
+
+
+
+
+
+
 
 # OpenCV Utility Class for Mouse Handling
 class Sketcher:
@@ -54,14 +89,7 @@ def main():
     print("ESC - exit")
 
     # Read image in color mode
-    #img = cv.imread(sys.argv[1], cv.IMREAD_COLOR)
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--img', type=str, default='./img')
-    parser.add_argument('--root', type=str, default='./data')
-    parser.add_argument('--snapshot', type=str, default=r'../model/1000000.pth')
-    parser.add_argument('--image_size', type=int, default=256)
-    args = parser.parse_args()
-    
+    img = cv.imread(args.photo, cv.IMREAD_COLOR)
 
     # If image is not read properly, return error
     if img is None:
@@ -76,6 +104,10 @@ def main():
     # Create sketch using OpenCV Utility Class: Sketcher
     sketch = Sketcher('image', [img_mask, inpaintMask], lambda : ((255, 255, 255), 255))
     
+
+    #img = sketch
+    #img = img.save("sketch.jpeg")
+
     while True:
         ch = cv.waitKey() 
         if ch == ord('s'):
@@ -84,36 +116,14 @@ def main():
             filename2 = './data/mask_root/Inverted_Inpaint_Image.jpg'
             cv.imwrite(filename1, img)
             cv.imwrite(filename2, (cv.bitwise_not(inpaintMask)))
-            break
+            print('Masked image saved in data')
 
-    
-    # training options
-    
-
-    device = torch.device('cuda')
-
-    size = (args.image_size, args.image_size)
-    img_transform = transforms.Compose(
-        [transforms.Resize(size=size), transforms.ToTensor(),
-        transforms.Normalize(mean=opt.MEAN, std=opt.STD)])
-    mask_transform = transforms.Compose(
-        [transforms.Resize(size=size), transforms.ToTensor()])
-
-    dataset_val = Places2(args.root,"./data/mask_root/", img_transform, mask_transform, 'val')
-
-    model = PConvUNet().to(device)
-    load_ckpt(args.snapshot, [('model', model)])
-
-    model.eval()
-    evaluate(model, dataset_val, device, 'result.jpg')
-        
 
 
         
-    print('Completed')
+
 
 
 if __name__ == '__main__':
     main()
     cv.destroyAllWindows()
-
