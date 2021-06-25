@@ -32,7 +32,7 @@
   </a>
 
   <p align="center">
-    <h3 align="center">An awesome image reconstruction project using concepts of partial convolution</h3>
+    <h3 align="center">An image reconstruction project using concepts of partial convolution</h3>
     <br />
     <a href="https://github.com/yatharthk2/Inpainting"><strong>Explore the docs »</strong></a>
     <br />
@@ -96,7 +96,6 @@ To download the datasets and weights
 
 
 
-
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
@@ -109,33 +108,45 @@ This section should list any major frameworks that you built your project using.
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Step 1. Clone the repository.
+Step 2. Download the dataset and pretrained weights from <a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">Here</a> and place it in the same directory.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+* Python 3.6+
+* Install Pytorch
+  ```sh
+  pip install torch==1.9.0+cu102 torchvision==0.10.0+cu102 torchaudio===0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+  ```
+  (for cude 10.2 – GPU)
+  ```sh
+  pip install torch torchvision torchaudio
+  ```
+  (for CPU)
+* Install python libraries
+  ```sh
+  pip install -r requirements.txt
+  ```
 
+### Training
+
+* Start from scratch
+  ```sh
+  python train.py
+  ```
+* Resume training
+  ```sh
+  python train.py --resume <weights_path>
+  ```
+### Testing
+
+* Run the command line
+  ```sh
+  python run.py --photo <test_image_path>
+  ```
+* Draw Mask
+* Press "s"
+Output will be saved in the root directory in ```result.jpg``` format. 
 
 
 <!-- USAGE EXAMPLES -->
