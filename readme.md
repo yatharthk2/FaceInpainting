@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/yatharthk2/Inpainting">
-    <img src="./image_logo/Inpainting_img.png" alt="Logo" width="120" height="80">
+    <img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/Inpainting_img.png" alt="Logo" width="200" height="150">
   </a>
 
   <h3 align="center">Inpainting</h3>
@@ -82,18 +82,23 @@
 
 
 
-![](http://i.imgur.com/OUkLi.gif)
+![](https://github.com/yatharthk2/Inpainting/blob/master/ivg/train%20video.gif)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+This is a very unique project in itself as  very recently the concept of partial convolutions was introduced to the world[december 2018] , before Pconv we used to use algorithms 
+such as PatchMatch , Iizuka et al , Yu et al and even the KNN for image reconstruction but there were two huge set back to these algorithms. those were :
+1) since the algorithms were ignorant of the different objects in the image , they often tended to smothen the whole reconstruction , which was good to human eyes but lacked the actuall information in terms of object segregation .
+2) Another limitation of many recent approaches is the focus on rectangularshaped holes, often assumed to be center in the image. We find these limitations may lead to overfitting to the rectangular holes, and ultimately limit the utility of these models in application
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+So to overcome the above 1st issue , a segmentation aware approch was used where in the distorted image as well as the binary mask is inputed to the model as result of which the model becomes aware of segmentations and different edges of the many objects in the image . Since the model is now aware of the segments it can more accurately segregate between the two objects .
+To overcome the 2nd issue , various methods has been documented by the authors of the Pconv research paper , but Random Walk algorithm was choosed to generate random mask for the model to train upon , so that it does not overfit a particular hole point.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
+Comming on to the aim of FaceInpainting , We saw that if we train the model on large data sets of image containing a single person then maybe we can teach the model to specifically reconstruct the distorted photo of a person . So to test the extent or limit to which we can reconstruct the broken image we trained model with 50,000 images as training data , 5000 images as test data and 5000 images as validation data for 1 million iterations .
+To download the datasets and weights
+<a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">click here</a>
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+
+
+
 
 ### Built With
 
