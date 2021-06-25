@@ -55,7 +55,7 @@ class Sketcher:
 
 def main():
 
-    print("Usage: python manual-mask <image_path>")
+    print("Usage: python run.py")
     print("Keys: ")
     print("t - inpaint using FMM")
     print("n - inpaint using NS technique")
@@ -110,6 +110,7 @@ def main():
 
             model.eval()
             evaluate(model, dataset_val, device, 'result.jpg')
+            break
 
 
 
