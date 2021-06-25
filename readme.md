@@ -28,13 +28,11 @@
 <br />
 <p align="center">
   <a href="https://github.com/yatharthk2/Inpainting">
-    <img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/Inpainting_img.png" alt="Logo" width="200" height="150">
+    <img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/Inpainting_img.png" alt="Logo" width="1080" height="500">
   </a>
 
-  <h3 align="center">Inpainting</h3>
-
   <p align="center">
-    An awesome image reconstruction project using concepts of partial convolution
+    <h3 align="center">An awesome image reconstruction project using concepts of partial convolution</h3>
     <br />
     <a href="https://github.com/yatharthk2/Inpainting"><strong>Explore the docs »</strong></a>
     <br />
@@ -84,15 +82,14 @@
 
 ![](https://github.com/yatharthk2/Inpainting/blob/master/ivg/train%20video.gif)
 
-This is a very unique project in itself as  very recently the concept of partial convolutions was introduced to the world[december 2018] , before Pconv we used to use algorithms 
-such as PatchMatch , Iizuka et al , Yu et al and even the KNN for image reconstruction but there were two huge set back to these algorithms. those were :
-1) since the algorithms were ignorant of the different objects in the image , they often tended to smothen the whole reconstruction , which was good to human eyes but lacked the actuall information in terms of object segregation .
-2) Another limitation of many recent approaches is the focus on rectangularshaped holes, often assumed to be center in the image. We find these limitations may lead to overfitting to the rectangular holes, and ultimately limit the utility of these models in application
+This is a very unique project in itself as  very recently the concept of partial convolutions was introduced to the world [december 2018], before partial convolution we used to use algorithms such as PatchMatch, Iizuka et al, Yu et al and even the KNN for image reconstruction but there were two huge setbacks to these algorithms, which were :
+1) Since the algorithms were ignorant of the different objects in the image, they often tended to smoothen the whole reconstruction, which was good to human eyes but lacked the actual information in terms of object segregation.
+2) Another limitation of many recent approaches is the focus on rectangular-shaped holes, often assumed to be the center of the image. We find these limitations may lead to overfitting to the rectangular holes and ultimately limit the utility of these models in application
 
-So to overcome the above 1st issue , a segmentation aware approch was used where in the distorted image as well as the binary mask is inputed to the model as result of which the model becomes aware of segmentations and different edges of the many objects in the image . Since the model is now aware of the segments it can more accurately segregate between the two objects .
-To overcome the 2nd issue , various methods has been documented by the authors of the Pconv research paper , but Random Walk algorithm was choosed to generate random mask for the model to train upon , so that it does not overfit a particular hole point.
+So to overcome the above 1st issue, a segmentation aware approach was used wherein the distorted image as well as the binary mask is inputted to the model as a result of which the model becomes aware of segmentations and different edges of the many objects in the image. Since the model is now aware of the segments it can more accurately segregate between the two objects.
+To overcome the 2nd issue, various methods have been documented by the authors of the Pconv research paper, but the Random Walk algorithm was chosen to generate a random mask for the model to train upon so that it does not overfit a particular hole point.
 
-Comming on to the aim of FaceInpainting , We saw that if we train the model on large data sets of image containing a single person then maybe we can teach the model to specifically reconstruct the distorted photo of a person . So to test the extent or limit to which we can reconstruct the broken image we trained model with 50,000 images as training data , 5000 images as test data and 5000 images as validation data for 1 million iterations .
+Coming on to the aim of FaceInpainting, We saw that if we train the model on large datasets of images containing a single person then maybe we can teach the model to specifically reconstruct the distorted photo of a person. So to test the extent or limit to which we can reconstruct the broken image we trained the model with 50,000 images as training data, 5000 images as test data, and 5000 images as validation data for 1 million iterations.
 To download the datasets and weights
 <a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">click here</a>
 
