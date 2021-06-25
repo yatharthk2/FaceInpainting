@@ -109,20 +109,23 @@ This section should list any major frameworks that you built your project using.
 ## Getting Started
 
 Step 1. Clone the repository.
+
 Step 2. Download the dataset and pretrained weights from <a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">Here</a> and place it in the same directory.
 
 ### Installation
 
 * Python 3.6+
 * Install Pytorch
+
+  (for cude 10.2 – GPU)
   ```sh
   pip install torch==1.9.0+cu102 torchvision==0.10.0+cu102 torchaudio===0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
   ```
-  (for cude 10.2 – GPU)
+  (for CPU)
   ```sh
   pip install torch torchvision torchaudio
   ```
-  (for CPU)
+  
 * Install python libraries
   ```sh
   pip install -r requirements.txt
@@ -146,6 +149,7 @@ Step 2. Download the dataset and pretrained weights from <a href="https://drive.
   ```
 * Draw Mask
 * Press "s"
+
 Output will be saved in the root directory in ```result.jpg``` format. 
 
 
