@@ -93,8 +93,8 @@ Coming on to the aim of FaceInpainting, We saw that if we train the model on lar
 To download the datasets and weights
 <a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">click here</a>
 
-
-
+### Architecture
+<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/architecture.jpg" alt="Logo" width="1080" height="300">
 
 ### Built With
 
