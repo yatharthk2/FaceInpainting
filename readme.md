@@ -45,63 +45,44 @@
   </p>
 </p>
 
-
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 
 
-![](https://github.com/yatharthk2/Inpainting/blob/master/ivg/train%20video.gif)
-
 This is a very unique project in itself as  very recently the concept of partial convolutions was introduced to the world [december 2018], before partial convolution we used to use algorithms such as PatchMatch, Iizuka et al, Yu et al and even the KNN for image reconstruction but there were two huge setbacks to these algorithms, which were :
 1) Since the algorithms were ignorant of the different objects in the image, they often tended to smoothen the whole reconstruction, which was good to human eyes but lacked the actual information in terms of object segregation.
+
 2) Another limitation of many recent approaches is the focus on rectangular-shaped holes, often assumed to be the center of the image. We find these limitations may lead to overfitting to the rectangular holes and ultimately limit the utility of these models in application
+### Architecture: The Image depicts flowchart for working of segmentation aware convolutions.
+Image taken from 
+<a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Harley_Segmentation-Aware_Convolutional_Networks_ICCV_2017_paper.pdf"><strong>Research Paper »</strong></a>
+
+<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/architecture.jpg" alt="Logo" width="1080" height="300">
 
 So to overcome the above 1st issue, a segmentation aware approach was used wherein the distorted image as well as the binary mask is inputted to the model as a result of which the model becomes aware of segmentations and different edges of the many objects in the image. Since the model is now aware of the segments it can more accurately segregate between the two objects.
 To overcome the 2nd issue, various methods have been documented by the authors of the Pconv research paper, but the Random Walk algorithm was chosen to generate a random mask for the model to train upon so that it does not overfit a particular hole point.
 
+### gif for iterations over many epochs
+![](https://github.com/yatharthk2/Inpainting/blob/master/ivg/train%20video.gif)
+
 Coming on to the aim of FaceInpainting, We saw that if we train the model on large datasets of images containing a single person then maybe we can teach the model to specifically reconstruct the distorted photo of a person. So to test the extent or limit to which we can reconstruct the broken image we trained the model with 50,000 images as training data, 5000 images as test data, and 5000 images as validation data for 1 million iterations.
 To download the datasets and weights
 <a href="https://drive.google.com/drive/folders/1E482OOOe_xYWVE9nKCnF_hrh0aLHgZIN?usp=sharing">click here</a>
+### final results shows reconstruction of 8 images , were  row 1 shows the distorted image ,row 2 shows the mask thats been applied for distortions , row 4 shows the final model reconstruction , row 5 shows the ground truth image. 
 
-### Architecture
-<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/architecture.jpg" alt="Logo" width="1080" height="300">
+<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/8_segment_image.jpg" alt="Logo" width="900" height="500">
+
+### On our path to train model , we were able to implement one more splendid feature . Turns out that given enough data and iteration cycles the model has also aquired understanding to reconstruct some important features of human face such as eyes , ears and  lips.
+
+<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/result%202.jpg" alt="Logo" width="1080" height="200">
+
+
 
 ### Built With
-
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+1) Pytorch
+2) Opencv
+3) Nvidia cuda toolkit
 
 
 
@@ -153,34 +134,13 @@ Step 2. Download the dataset and pretrained weights from <a href="https://drive.
 Output will be saved in the root directory in ```result.jpg``` format. 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-
-
 <!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
+## References
+1. <a href="https://arxiv.org/pdf/1804.07723.pdf"><strong>Partial convolution research paper »</strong></a> 
+2. <a href="https://openaccess.thecvf.com/content_ICCV_2017/papers/Harley_Segmentation-Aware_Convolutional_Networks_ICCV_2017_paper.pdf"><strong>Segmentation aware convolution research paper »</strong></a>
+3. <a href="https://github.com/NVIDIA/partialconv"><strong>reference code Implementation »</strong></a> 
+4. <a href="https://github.com/naoto0804/pytorch-inpainting-with-partial-conv"><strong>Base code Implementation »</strong></a> 
+5. <a href="https://github.com/spmallick/learnopencv/blob/master/Image-Inpainting/inpaint.py"><strong>Manual mask generator code reference »</strong></a> 
 
 <!-- LICENSE -->
 ## License
@@ -191,10 +151,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+* Contact Yatharth @yatharthk2.nn@gmail.com
+* Contact Poojan Panchal @ pdavpoojan@gmail.com 
 
 
 
