@@ -151,8 +151,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-* Contact yatharth @yatharthk2.nn@gmail.com
-* contact poojan @xyz
+* Contact Yatharth @yatharthk2.nn@gmail.com
+* Contact Poojan Panchal @ pdavpoojan@gmail.com 
 
 
 
