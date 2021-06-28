@@ -75,7 +75,7 @@ To download the datasets and weights
 
 ### On our path to train model , we were able to implement one more splendid feature . Turns out that given enough data and iteration cycles the model has also aquired understanding to reconstruct some important features of human face such as eyes , ears and  lips.
 
-<img src="https://github.com/yatharthk2/Inpainting/blob/master/ivg/result%202.jpg" alt="Logo" width="1080" height="200">
+
 
 
 
@@ -151,7 +151,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-* Contact Yatharth @yatharthk2.nn@gmail.com
+* Contact Yatharth Kapadia @yatharthk2.nn@gmail.com
 * Contact Poojan Panchal @ pdavpoojan@gmail.com 
 
 
